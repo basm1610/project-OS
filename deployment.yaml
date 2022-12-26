@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name : myapp
+
+spec:
+  selector:
+    matchLabels:
+      app: web-app
+
+  replicas: 2
+  template:
+    metadata:
+      name: web-app
+      labels: 
+        app: web-app
+    spec:
+      containers:
+        - name: nginx-app 
+          image: basm16/nginx-task
+          imagePullPolicy: IfNotPresent
+          ports: 
+            - containerPort: 80
